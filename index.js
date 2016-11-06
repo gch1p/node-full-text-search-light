@@ -1,3 +1,5 @@
+'use strict'
+
 const debug = require('debug')('full-text-search-light')
 
 function arrayUnique(array) {
