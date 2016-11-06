@@ -10,9 +10,7 @@
     "test/"
   ],
   "dependencies": {
-    "debug": "*",
-    "jsonfile": "2.0.0",
-    "merge": "1.2.0"
+    "debug": "*"
   },
   "devDependecies": {
     "mocha": "*"
@@ -23,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/frankred/node-full-text-search-light.git"
+    "url": "https://github.com/gch1p/node-full-text-search-light.git"
   },
   "keywords": [
     "fulltext",
