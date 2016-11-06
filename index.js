@@ -1,5 +1,4 @@
-//const debug = require('debug')('full-text-search-light')
-const debug = console.log
+const debug = require('debug')('full-text-search-light')
 
 function arrayUnique(array) {
   var a = []
