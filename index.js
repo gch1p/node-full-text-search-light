@@ -16,7 +16,8 @@ class FullTextSearchLight {
   constructor(options) {
     const defaultOptions = {
       index_amount: 12,
-      ignore_case: true
+      ignore_case: true,
+      only_prefix: false,
     }
 
     this.config = Object.assign(defaultOptions, options)
@@ -430,7 +431,7 @@ class FullTextSearchLight {
 
   cut(text, level) {
     if (level < 1) {
-      throw new Error("Can't divide a word in smaller parts then 1 chacator")
+      throw new Error("Can't divide a word in parts smaller than 1 character")
     }
 
     if (text.constructor !== String) {
@@ -438,11 +439,22 @@ class FullTextSearchLight {
     }
 
     let parts = []
-    for (let i = 0; i < text.length; i++) {
-      if (i + level > text.length) {
-        break
+    if (this.config.only_prefix) {
+      let words = text.split(' ')
+      for (let i = 0; i < words.length; i++) {
+        let word = words[i].trim()
+        if (level > word.length) {
+          continue
+        }
+        parts.push(word.substring(0, level))
       }
-      parts.push(text.substring(i, i + level))
+    } else {
+      for (let i = 0; i < text.length; i++) {
+        if (i + level > text.length) {
+          break
+        }
+        parts.push(text.substring(i, i + level))
+      }
     }
 
     return arrayUnique(parts)
